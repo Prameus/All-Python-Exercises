@@ -12,8 +12,9 @@ studentDict = {
     },
 }
 
+
 class StudentList:
-    def __init__(self, name, surname, age, gender, claass, studentNumber, gpa):
+    def something(self, name, surname, age, gender, claass, studentNumber, gpa):
         self.name = name
         self.surname = surname
         self.age = age
@@ -21,6 +22,19 @@ class StudentList:
         self.claass = claass
         self.studentNumber = studentNumber
         self.GPA = gpa
+
+    def newStudent():
+        while True:
+            for i in fieldList:
+                i = input(f"Please Enter The {i}: ")
+                newFieldList.append(i)
+            whatever.addStudent(newFieldList)
+            choice = str(
+                input('Is There Any Other Thing You Want to Change? Write Yes/No'))
+            if choice == "Yes":
+                continue
+            else:
+                break
 
 
 fieldList = ["name", "surname", "age",
@@ -43,27 +57,16 @@ def editStudents():
             break
 
 
-def newStudent():
-    while True:
-        for i in fieldList:
-            i = input(f"Please Enter The {i}: ")
-            newFieldList.append(i)
-        whatever.addStudent(newFieldList)
-        choice = str(
-            input('Is There Any Other Thing You Want to Change? Write Yes/No'))
-        if choice == "Yes":
-            continue
-        else:
-            break
-
-
 def mainTab():
     while True:
-        Thoughts = input(
-            "What Would You to Do?\n 1 For Add New Students,\n 2 for Edit Students,\n 3 For Exit")
+        Thoughts = int(input(
+            "What Would You to Do?\n 1 For Add New Students,\n 2 for Edit Students,\n 3 For Exit"))
         if Thoughts == 1:
-            newStudent()
+            whatever.newStudent()
         elif Thoughts == 2:
             editStudents()
         else:
             break
+
+
+mainTab()
