@@ -1,7 +1,8 @@
-
+import json
 
 studentDict = {
-    "001": {
+    {
+        "identity": "001",
         "name": 'musa',
         "surname": 'karaaslan',
         "age": 21,
@@ -16,30 +17,38 @@ studentDict = {
 fieldList = ["identity", "name", "surname", 'age',
              "gender", "claass", "studentNumber", 'gpa']
 
+newFieldList = []
+
+
+studentListDictionary = {}
+
 
 class StudentList:
     def __init__(self, identity, name, surname, age, gender, claass, studentNumber, gpa):
         self.identity = identity
         self.name = name
         self.surname = surname
-        self.age = age 
+        self.age = age
         self.gender = gender
         self.claass = claass
         self.studentNumber = studentNumber
         self.gpa = gpa
+
+    def addingStudent():
+        fieldInClass = [identity, name, surname,
+                        age, gender, claass, studentNumber, gpa]
+        for i in fieldInClass:
+            for j in fieldList:
+                studentListDictionary.update({j: i})
+            studentDict.update({identity: studentListDictionary})
+            with open("noOneKnowsWhatItsLiketoBeTheBadMan.json", "wr") as file:
+                json.dumps(studentDict, file)
 
     def editStudent():
         while True:
             choice = input("Which Value You Want to Change?")
             for j in fieldList:
                 if j == choice:
-
-
-newFieldList = []
-
-
-studentListDictionary = []
-
 
 def mainTab():
     while True:
