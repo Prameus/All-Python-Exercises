@@ -11,50 +11,34 @@ studentDict = {
         "GPA": 74.5
     },
 }
+#?ic ice bir dictionary`de nasil keys() kullanirim?
+
+fieldList = ["identity", "name", "surname", 'age',
+             "gender", "claass", "studentNumber", 'gpa']
 
 
 class StudentList:
-    def something(self, name, surname, age, gender, claass, studentNumber, gpa):
+    def __init__(self, identity, name, surname, age, gender, claass, studentNumber, gpa):
+        self.identity = identity
         self.name = name
         self.surname = surname
-        self.age = age
+        self.age = age 
         self.gender = gender
         self.claass = claass
         self.studentNumber = studentNumber
-        self.GPA = gpa
+        self.gpa = gpa
 
-    def newStudent():
+    def editStudent():
         while True:
-            for i in fieldList:
-                i = input(f"Please Enter The {i}: ")
-                newFieldList.append(i)
-            whatever.addStudent(newFieldList)
-            choice = str(
-                input('Is There Any Other Thing You Want to Change? Write Yes/No'))
-            if choice == "Yes":
-                continue
-            else:
-                break
+            choice = input("Which Value You Want to Change?")
+            for j in fieldList:
+                if j == choice:
 
-
-fieldList = ["name", "surname", "age",
-             "gender", "claass", "studentNumber", "gpa"]
 
 newFieldList = []
 
-whatever = StudentList()
 
-
-def editStudents():
-    while True:
-        choice2 = input('Write Which Property You Want to Change?')
-        if choice2.lower in fieldList:
-            choice3 = input(
-                'Write Which Property You Want to Change Instead of Old One?')
-            whatever.choice2 = choice3
-            print(whatever)
-        else:
-            break
+studentListDictionary = []
 
 
 def mainTab():
@@ -62,11 +46,14 @@ def mainTab():
         Thoughts = int(input(
             "What Would You to Do?\n 1 For Add New Students,\n 2 for Edit Students,\n 3 For Exit"))
         if Thoughts == 1:
-            whatever.newStudent()
+            for i in fieldList:
+                value = input(f'please enter {i} value')
+                studentListDictionary.append(value)
+            StudentList(studentListDictionary)
         elif Thoughts == 2:
             editStudents()
         else:
             break
 
 
-mainTab()
+# mainTab()
