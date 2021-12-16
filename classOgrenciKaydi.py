@@ -46,9 +46,25 @@ class StudentList:
 
     def editStudent():
         while True:
-            choice = input("Which Value You Want to Change?")
-            for j in fieldList:
-                if j == choice:
+            with open("noOneKnowsWhatItsLiketoBeTheBadMan.json", "wr") as file:
+                print(file)
+            while True:
+                choice1 = input("Whose Value Going to Changed?")
+                if choice1 in studentDict.keys():
+                    break
+                else:
+                    print("You Passed Wrong Value, Please Try Again")
+                while True:
+                    choice2 = input("Which Value You Want to Change? ")
+                    if choice2 in fieldList:
+                        break
+                    else:
+                        print("You Passed Wrong Value, Please Try Again")
+                choice3 = input("What Will be Replaced With Value? ")
+                studentDict.update({choice2: choice3})
+
+
+whatever = StudentList()
 
 def mainTab():
     while True:
@@ -57,10 +73,10 @@ def mainTab():
         if Thoughts == 1:
             for i in fieldList:
                 value = input(f'please enter {i} value')
-                studentListDictionary.append(value)
-            StudentList(studentListDictionary)
+                newFieldList.append(value)
+            StudentList(newFieldList)
         elif Thoughts == 2:
-            editStudents()
+            whatever.editStudents()
         else:
             break
 
