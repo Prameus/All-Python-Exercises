@@ -1,0 +1,19 @@
+{
+    "001": {
+        "name": "musa",
+        "surname": "karaaslan",
+        "age": "21",
+        "gender": "elephant ",
+        "studentNumber": "921",
+        "gpa": "100"
+    }
+}{
+    "002": {
+        "name": "musa",
+        "surname": "karaaslana",
+        "age": "21",
+        "gender": "liberal",
+        "studentNumber": "333",
+        "gpa": "31"
+    }
+}
