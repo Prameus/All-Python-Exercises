@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import total_ordering
 from json import loads, dumps
 import datetime
 from operator import indexOf
@@ -27,40 +28,62 @@ class Management:
     first_dict = {}
     last_dict = []
     skyrim_guard_quotes = [
-        "I used to be an adventurer like you. Then I took an arrow in the knee...", "Let me guess... someone stole your sweetroll.", "My cousin's out fighting dragons, and what do I get? Guard duty.", "Stay out of trouble, Elf."]
+        "I used to be an adventurer like you. Then I took an arrow in the knee...",
+        "Let me guess... someone stole your sweetroll.",
+        "My cousin's out fighting dragons, and what do I get? Guard duty.",
+        "Stay out of trouble, Elf.",
+        "hey you're finally awake",
+        "Stop right there, criminal scum! Nobody breaks the law on my watch!"]
     commution = 10
     price = 1000
 
     def sales_screen(self):
         while True:
             choice = str(input(
-                'if you want enter to;\n personel`s panel write "personel",\n Purcase panel write "purcase",\nFor quit write "quit"\n Your action?: '))
+                'if you want enter to;\n personel`s panel write "personel",\n Purcase panel write "purcase",\n To see all buying of company write "company"\nFor quit write "quit"\n Your action?: '))
             if choice == 'personel':
                 self.personels_screen()
             elif choice == 'purcase':
-                self.manage()
+                self.purcase_screen()
+            elif choice == 'company':
+                self.company_screen()
             elif choice == 'quit':
                 break
             else:
                 print(random.choice(self.skyrim_guard_quotes))
 
     def personels_screen(self):
-        commution = []
         choosen_personel = str(
             input('First, choose which personel you want to work with: '))
         personel = self.first_dict[choosen_personel]
-        choice = str(input(
-            'Please provide your action as;\n To see choosen personels commution write "commution"\n To see choosen personels ALL commution write "all commution"'))
-        if choice == 'commution':
-            pass
+        print(personel)
+        choice = (input(
+            'Please provide your action as;\n To see choosen personels commution write "commution"\n To see choosen personels ALL commution write "all commution": '))
+        if choice == 'all commution':
+            total_commution = 0
+            for i in personel:
+                commution_of_personel = i[1]
+                total_commution = total_commution + commution_of_personel
+                print(
+                    f"{total_commution}, Here is {choosen_personel}`s summation of his/her all commution")
+        else:
+            print(random.choice(self.skyrim_guard_quotes))
 
-        elif choice == 'all commution':
-            pass
-        for i in self.first_dict.values():
-            commution.append(i[1])
-            print(commution)
+    def check_company(self, company):
+        bill = []
+        field = self.first_dict.values()
+        for i in field:
+            if i[0] == company:
+                bill.append(i[0])
+        return bill
 
-    def manage(self):
+    def company_screen(self):
+        choice = str(
+            input('Please write the company you want to see all payments'))
+        bill = self.check_company(choice)
+        print(f'here is all information of {choice} named company`s payment')
+
+    def purcase_screen(self):
         while True:
             confirmed_personel = self.confirm_personel()
             confirmed_company = self.confirm_company()
@@ -109,7 +132,7 @@ class Management:
                 break
 
     def sale_calculater(self):
-        operation = str(self.price+(self.price/self.commution))
+        operation = (self.price+(self.price/self.commution))
         return operation
 
     def write_to_dictionary(self, personel):
