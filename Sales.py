@@ -1,10 +1,8 @@
 from dataclasses import dataclass
-from functools import total_ordering
 from json import loads, dumps
 import datetime
-from operator import indexOf
 import random
-
+import asyncio
 
 @dataclass
 class Personels:
@@ -25,7 +23,8 @@ class Management:
     personel_list = ['hari seldon', 'dors venabili',
                      'anakin skywalker', 'freddy kruger']
     company_list = ['siemens', 'TDK', 'apple', 'chineese communist party']
-    first_dict = {}
+    first_dict = {'hari seldon': None, 'dors venabili': None,
+                  'anakin skywalker': None, 'freddy kruger': None}
     last_dict = []
     skyrim_guard_quotes = [
         "I used to be an adventurer like you. Then I took an arrow in the knee...",
@@ -81,7 +80,7 @@ class Management:
         choice = str(
             input('Please write the company you want to see all payments'))
         bill = self.check_company(choice)
-        print(f'here is all information of {choice} named company`s payment')
+        print(f'here is all information of {bill} named company`s payment')
 
     def purcase_screen(self):
         while True:
@@ -94,10 +93,14 @@ class Management:
             time_now = str(self.time.strftime("%b %d, %Y"))
             print(time_now)
             self.last_dict.append((confirmed_company, sold_price, time_now))
-
-            self.first_dict.update({confirmed_personel: self.last_dict})
+            self.check_personel(confirmed_personel, self.last_dict)
             print(f"Here is your bill!\n{self.first_dict}")
             break
+
+    def check_personel(self, personel, last_dict):
+        for i in self.first_dict.keys():
+            if i == personel:
+                self.first_dict.update({i: last_dict})
 
     def confirm_personel(self):
         while True:
